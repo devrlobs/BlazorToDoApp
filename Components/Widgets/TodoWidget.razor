@@ -1,0 +1,92 @@
+@using System.Text
+@using System.Text.Json
+@using System.Text.Json.Serialization
+@inject IJSRuntime JSRuntime
+
+
+<h1>To do list</h1>
+<input @bind-value="userInput" placeholder="what needs to be done?">
+<button @onclick="OnSave">Save</button>
+
+
+@foreach (var todoitem in todolist)
+{
+    <li>@todoitem.Value
+    <button @onclick="@(() => OnRemoveItemAsync(todoitem.Key))">remove</button>
+    <button @onclick="@(() => OnSetEdit(todoitem.Key, todoitem.Value))">Edit</button>
+</li>
+}
+
+
+@code {
+    Dictionary<int, string> todolist = new();
+    private int id = 0;
+    private string userInput = "";
+    private bool isEditting = false;
+
+    protected async void OnSaveItemAsync()
+    {
+
+        id++;
+        todolist.Add(id, userInput);
+        await JSRuntime.InvokeVoidAsync("setItem", "todo", JsonSerializer.Serialize(todolist));
+
+
+    }
+
+    protected void OnSave()
+    {
+        if (isEditting)
+        {
+            OnUpdateItemAsync(id);
+        }
+        else
+        {
+            OnSaveItemAsync();
+        }
+    }
+
+    protected void OnSetEdit(int itemId, string toEditUserInput)
+    {
+        userInput = toEditUserInput;
+        id = itemId;
+        isEditting = true;
+    }
+
+    protected async void OnUpdateItemAsync(int itemId)
+    {
+
+        todolist[itemId] = userInput;
+        await JSRuntime.InvokeVoidAsync("setItem", "todo", JsonSerializer.Serialize(todolist));
+        await InvokeAsync(StateHasChanged);
+    }
+
+    protected async void OnRemoveItemAsync(int itemId)
+    {
+        todolist.Remove(itemId);
+        await JSRuntime.InvokeVoidAsync("setItem", "todo", JsonSerializer.Serialize(todolist));
+        await InvokeAsync(StateHasChanged);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        try
+        {
+            if (firstRender)
+            {
+                string? countFromLocalStorage = await JSRuntime.InvokeAsync<string>("getItem", "todo");
+                if (countFromLocalStorage != null)
+                {
+                    todolist = JsonSerializer.Deserialize<Dictionary<int, string>>(countFromLocalStorage);
+                    id = todolist.Keys.Last();
+                    await InvokeAsync(StateHasChanged);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+
+    }
+}
