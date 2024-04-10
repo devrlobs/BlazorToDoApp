@@ -1,0 +1,57 @@
+{
+  "Files": [
+    {
+      "Id": "/home/rlobiano/testprojects/BlazorToDoApp/obj/Debug/net8.0/scopedcss/projectbundle/BlazorToDoApp.bundle.scp.css",
+      "PackagePath": "staticwebassets/BlazorToDoApp.bundle.scp.css"
+    },
+    {
+      "Id": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/css/app.css",
+      "PackagePath": "staticwebassets/css/app.css"
+    },
+    {
+      "Id": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/css/tailwind.config.js",
+      "PackagePath": "staticwebassets/css/tailwind.config.js"
+    },
+    {
+      "Id": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/dist/app.bundle.css",
+      "PackagePath": "staticwebassets/dist/app.bundle.css"
+    },
+    {
+      "Id": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/dist/app.js",
+      "PackagePath": "staticwebassets/dist/app.js"
+    },
+    {
+      "Id": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/favicon.png",
+      "PackagePath": "staticwebassets/favicon.png"
+    },
+    {
+      "Id": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/scripts/app.ts",
+      "PackagePath": "staticwebassets/scripts/app.ts"
+    },
+    {
+      "Id": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/scripts/global.d.ts",
+      "PackagePath": "staticwebassets/scripts/global.d.ts"
+    },
+    {
+      "Id": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/scripts/tsconfig.json",
+      "PackagePath": "staticwebassets/scripts/tsconfig.json"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.BlazorToDoApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.BlazorToDoApp.props",
+      "PackagePath": "build\\BlazorToDoApp.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.BlazorToDoApp.props",
+      "PackagePath": "buildMultiTargeting\\BlazorToDoApp.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.BlazorToDoApp.props",
+      "PackagePath": "buildTransitive\\BlazorToDoApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
