@@ -1,41 +1,66 @@
 @using System.Text
 @using System.Text.Json
 @using System.Text.Json.Serialization
+@using BlazorToDoApp.Components.Models
+@using System.Linq
 @inject IJSRuntime JSRuntime
 
 
 <h1 class="text-[blue] font-bold text-[32px]">To do list</h1>
-<input  placeholder="what needs to be done?" @onkeyup=@((KeyboardEventArgs e) => OnEnterKeyPressed(e)) @bind="userInput">
+<input placeholder="what needs to be done?" @onkeyup=@((KeyboardEventArgs e) => OnEnterKeyPressed(e)) @bind="userInput">
 
 
 
 @foreach (var todoitem in todolist)
 {
-    <li>@todoitem.Value
+
+    <li> <input type="checkbox" checked="@todoitem.Value.isDone" @oninput=@(() =>
+        OnCheckboxChangeHandler(todoitem))>@todoitem.Value.Description @todoitem.Value.isDone
     <button @onclick="@(() => OnRemoveItemAsync(todoitem.Key))">remove</button>
-    <button @onclick="@(() => OnSetEdit(todoitem.Key, todoitem.Value))">Edit</button>
+    <button @onclick="@(() => OnSetEdit(todoitem.Key, todoitem.Value.Description))">Edit</button>
 </li>
 }
 
 
 @code {
-    Dictionary<int, string> todolist = new();
+    Dictionary<int, Todo> todolist = new();
     private int id = 0;
     private string userInput = "";
     private bool isEditting = false;
+    private bool isChecked = false;
 
     protected async Task OnEnterKeyPressed(KeyboardEventArgs e)
     {
-        if(e.Code == "Enter")
+        if (e.Code == "Enter")
         {
             await OnSave();
             userInput = "";
         }
     }
+    protected async Task OnCheckboxChangeHandler(KeyValuePair<int, Todo> item)
+    {
+        if (!item.Value.isDone)
+        {
+            isChecked = true;
+        }
+        else
+        {
+            isChecked = false;
+        }
+        //get dictionaryItem using item from foreach
+        Todo todoObj = new Todo { };
+        todoObj = todolist[item.Key];
+
+        //replace the value of item.isDone into isChecked value
+        todoObj.isDone = isChecked;
+        todolist[item.Key] = todoObj;
+        await InvokeVoidJSRuntimeAsync(todolist);
+    }
     protected async Task OnSaveItemAsync()
     {
+        Todo todoobj = new Todo { Description = userInput, isDone = false };
         id++;
-        todolist.Add(id, userInput);
+        todolist.Add(id, todoobj);
         await InvokeVoidJSRuntimeAsync(todolist);
     }
     protected async Task OnSave()
@@ -57,7 +82,8 @@
     }
     protected async Task OnUpdateItemAsync(int itemId)
     {
-        todolist[itemId] = userInput;
+        Todo todoObj = new Todo { Description = userInput, isDone = false };
+        todolist[itemId] = todoObj;
         await InvokeVoidJSRuntimeAsync(todolist);
     }
     protected async Task OnRemoveItemAsync(int itemId)
@@ -74,7 +100,7 @@
                 string? countFromLocalStorage = await JSRuntime.InvokeAsync<string>("getItem", "todo");
                 if (countFromLocalStorage != null)
                 {
-                    todolist = JsonSerializer.Deserialize<Dictionary<int, string>>(countFromLocalStorage);
+                    todolist = JsonSerializer.Deserialize<Dictionary<int, Todo>>(countFromLocalStorage);
                     id = todolist.Keys.Last();
                     await InvokeAsync(StateHasChanged);
                 }
@@ -86,7 +112,7 @@
         }
     }
 
-    protected async Task InvokeVoidJSRuntimeAsync(Dictionary<int, string> invokeParam)
+    protected async Task InvokeVoidJSRuntimeAsync(Dictionary<int, Todo> invokeParam)
     {
         if (invokeParam.Count() != 0)
         {
