@@ -20,7 +20,6 @@
 /home/rlobiano/testprojects/BlazorToDoApp/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.BlazorToDoApp.props
 /home/rlobiano/testprojects/BlazorToDoApp/obj/Debug/net8.0/staticwebassets.pack.json
 /home/rlobiano/testprojects/BlazorToDoApp/obj/Debug/net8.0/scopedcss/Components/Layout/MainLayout.razor.rz.scp.css
-/home/rlobiano/testprojects/BlazorToDoApp/obj/Debug/net8.0/scopedcss/Components/Layout/NavMenu.razor.rz.scp.css
 /home/rlobiano/testprojects/BlazorToDoApp/obj/Debug/net8.0/scopedcss/bundle/BlazorToDoApp.styles.css
 /home/rlobiano/testprojects/BlazorToDoApp/obj/Debug/net8.0/scopedcss/projectbundle/BlazorToDoApp.bundle.scp.css
 /home/rlobiano/testprojects/BlazorToDoApp/obj/Debug/net8.0/BlazorToDoApp.dll
