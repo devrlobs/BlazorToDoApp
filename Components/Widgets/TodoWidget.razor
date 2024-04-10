@@ -24,50 +24,39 @@
     private string userInput = "";
     private bool isEditting = false;
 
-    protected async void OnSaveItemAsync()
+    protected async Task OnSaveItemAsync()
     {
-
         id++;
         todolist.Add(id, userInput);
-        await JSRuntime.InvokeVoidAsync("setItem", "todo", JsonSerializer.Serialize(todolist));
-
-
+        await InvokeVoidJSRuntimeAsync(todolist);
     }
-
-    protected void OnSave()
+    protected async Task OnSave()
     {
         if (isEditting)
         {
-            OnUpdateItemAsync(id);
+            await OnUpdateItemAsync(id);
         }
         else
         {
-            OnSaveItemAsync();
+            await OnSaveItemAsync();
         }
     }
-
     protected void OnSetEdit(int itemId, string toEditUserInput)
     {
         userInput = toEditUserInput;
         id = itemId;
         isEditting = true;
     }
-
-    protected async void OnUpdateItemAsync(int itemId)
+    protected async Task OnUpdateItemAsync(int itemId)
     {
-
         todolist[itemId] = userInput;
-        await JSRuntime.InvokeVoidAsync("setItem", "todo", JsonSerializer.Serialize(todolist));
-        await InvokeAsync(StateHasChanged);
+        await InvokeVoidJSRuntimeAsync(todolist);
     }
-
-    protected async void OnRemoveItemAsync(int itemId)
+    protected async Task OnRemoveItemAsync(int itemId)
     {
         todolist.Remove(itemId);
-        await JSRuntime.InvokeVoidAsync("setItem", "todo", JsonSerializer.Serialize(todolist));
-        await InvokeAsync(StateHasChanged);
+        await InvokeVoidJSRuntimeAsync(todolist);
     }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         try
@@ -87,6 +76,14 @@
         {
             throw e;
         }
+    }
 
+    protected async Task InvokeVoidJSRuntimeAsync(Dictionary<int, string> invokeParam)
+    {
+        if (invokeParam.Count() != 0)
+        {
+            await JSRuntime.InvokeVoidAsync("setItem", "todo", JsonSerializer.Serialize(invokeParam));
+            await InvokeAsync(StateHasChanged);
+        }
     }
 }
