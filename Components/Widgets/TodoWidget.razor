@@ -5,8 +5,8 @@
 
 
 <h1 class="text-[blue] font-bold text-[32px]">To do list</h1>
-<input @bind-value="userInput" placeholder="what needs to be done?">
-<button @onclick="OnSave">Save</button>
+<input  placeholder="what needs to be done?" @onkeyup=@((KeyboardEventArgs e) => OnEnterKeyPressed(e)) @bind="userInput">
+
 
 
 @foreach (var todoitem in todolist)
@@ -24,6 +24,14 @@
     private string userInput = "";
     private bool isEditting = false;
 
+    protected async Task OnEnterKeyPressed(KeyboardEventArgs e)
+    {
+        if(e.Code == "Enter")
+        {
+            await OnSave();
+            userInput = "";
+        }
+    }
     protected async Task OnSaveItemAsync()
     {
         id++;
