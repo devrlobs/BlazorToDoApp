@@ -1,3 +1,4 @@
+"use strict";
 window.setItem = (key, value) => {
     localStorage.setItem(key, value);
 };

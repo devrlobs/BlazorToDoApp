@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CjIIQ4mfKjn8H/NdJpBeKbfsGZgSkJwBy5rp4+jgAvM=",
+  "Hash": "YYsqPOTqsIke4xTIXJoD37b2YPaayEH0p0APlI3/QoY=",
   "Source": "BlazorToDoApp",
   "BasePath": "_content/BlazorToDoApp",
   "Mode": "Default",
@@ -74,6 +74,25 @@
       "OriginalItemSpec": "wwwroot/app.css"
     },
     {
+      "Identity": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/dist/app.js",
+      "SourceId": "BlazorToDoApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/",
+      "BasePath": "_content/BlazorToDoApp",
+      "RelativePath": "dist/app.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/dist/app.js"
+    },
+    {
       "Identity": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/favicon.png",
       "SourceId": "BlazorToDoApp",
       "SourceType": "Discovered",
@@ -93,12 +112,12 @@
       "OriginalItemSpec": "wwwroot/favicon.png"
     },
     {
-      "Identity": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/scripts/app.js",
+      "Identity": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/scripts/app.ts",
       "SourceId": "BlazorToDoApp",
       "SourceType": "Discovered",
       "ContentRoot": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/",
       "BasePath": "_content/BlazorToDoApp",
-      "RelativePath": "scripts/app.js",
+      "RelativePath": "scripts/app.ts",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -109,7 +128,45 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/scripts/app.js"
+      "OriginalItemSpec": "wwwroot/scripts/app.ts"
+    },
+    {
+      "Identity": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/scripts/global.d.ts",
+      "SourceId": "BlazorToDoApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/",
+      "BasePath": "_content/BlazorToDoApp",
+      "RelativePath": "scripts/global.d.ts",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/scripts/global.d.ts"
+    },
+    {
+      "Identity": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/scripts/tsconfig.json",
+      "SourceId": "BlazorToDoApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/rlobiano/testprojects/BlazorToDoApp/wwwroot/",
+      "BasePath": "_content/BlazorToDoApp",
+      "RelativePath": "scripts/tsconfig.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/scripts/tsconfig.json"
     }
   ]
 }
