@@ -5,21 +5,26 @@
 @using System.Linq
 @inject IJSRuntime JSRuntime
 
-
-<h1 class="text-[blue] font-bold text-[32px]">To do list</h1>
-<input placeholder="what needs to be done?" @onkeyup=@((KeyboardEventArgs e) => OnEnterKeyPressed(e)) @bind="userInput">
-
-
-
-@foreach (var todoitem in todolist)
-{
-
-    <li> <input type="checkbox" checked="@todoitem.Value.isDone" @oninput=@(() =>
-        OnCheckboxChangeHandler(todoitem))>@todoitem.Value.Description @todoitem.Value.isDone
-    <button @onclick="@(() => OnRemoveItemAsync(todoitem.Key))">remove</button>
-    <button @onclick="@(() => OnSetEdit(todoitem.Key, todoitem.Value.Description))">Edit</button>
-</li>
-}
+<section class="todosection">
+    <header class="todoHeader">
+        <h1>todos</h1>
+        <input class="new-todo" placeholder="What needs to be done?" @onkeyup=@((KeyboardEventArgs e) =>
+            OnEnterKeyPressed(e)) @bind="userInput" autofocus>
+    </header>
+    <main class="main">
+        <div class="todoList">
+            @foreach (var todoitem in todolist)
+            {
+                <li> <input type="checkbox" checked="@todoitem.Value.isDone" @oninput=@(() =>
+                    OnCheckboxChangeHandler(todoitem))>
+                    @todoitem.Value.Description
+                    <button class="removeItem" @onclick="@(() => OnRemoveItemAsync(todoitem.Key))">remove</button>
+                    <button class="editItem" @onclick="@(() => OnSetEdit(todoitem.Key, todoitem.Value.Description))">Edit</button>
+                </li>
+            }
+        </div>
+    </main>
+</section>
 
 
 @code {
@@ -117,6 +122,11 @@
         if (invokeParam.Count() != 0)
         {
             await JSRuntime.InvokeVoidAsync("setItem", "todo", JsonSerializer.Serialize(invokeParam));
+            await InvokeAsync(StateHasChanged);
+        }
+        else
+        {   //to refine here, issue is that when last item will be removed, it does not remove that item as the param is already null
+            await JSRuntime.InvokeVoidAsync("localStorage.clear");
             await InvokeAsync(StateHasChanged);
         }
     }

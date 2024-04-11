@@ -7,12 +7,3 @@ bunx tailwindcss -i app.css -o ../dist/app.bundle.css --watch
 
 
 
-
-
-    Dictionary<int, string> todolist = new();
-
-
-    todolist.add(id, string[""])
-
-
-    todolist.add(id, object)
