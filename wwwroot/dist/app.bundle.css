@@ -601,6 +601,33 @@ html, body {
   font-style: italic;
 }
 
-.todoHeader{
+li{
+  padding: 20px;
+  list-style-position:inside;
+  border: 1px solid  rgba(0,0,0,.03);
+  list-style: none;
+}
+
+.closeBtn{
+  float: right;
+}
+
+.checkbox-round {
+  width: 2.3em;
+  height: 2.3em;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.checkbox-round:checked {
+  border: 1px solid rgb(25, 212, 66);
 }
 
